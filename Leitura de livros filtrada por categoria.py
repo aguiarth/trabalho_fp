@@ -2,7 +2,7 @@
 
 def listar_livros_filtrados():
 
-    procurar_categoria = input('Digite a categoria de livros que deseja encontrar: ').capitalize()
+    procurar_categoria = input('Digite a categoria de livros que deseja encontrar: ').title()
 
     for i, livro in enumerate(biblioteca):
         if procurar_categoria in livro["Categorias"]:
