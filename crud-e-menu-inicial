@@ -3,22 +3,45 @@ os.system("cls")
 
 biblioteca = []
 
-# Função para adicionar um livro com categoria e preço
+# Função para abrir o arquivo CSV
+def abrir_arquivo():
+    return open("bestsellers with categories.csv", "a+", encoding="utf-8")
+
+# abaixo, seguem as funções CRUD
+
+# (C - CREATE) Função para adicionar um livro
 def adicionar_livro():
     titulo = input("Digite o título do livro: ")
     autor = input("Digite o autor do livro: ")
-    ano = input("Digite o ano de publicação do livro: ")
+
+    # validando o ano
+    while True:
+        ano = input("Digite o ano de publicação do livro: ")
+        if not ano.isdigit() or len(ano) != 4:
+            print("Ano inválido. Digite um ano válido com 4 dígitos.")
+        else:
+            break
+
+    # Validando o preço
+    while True:
+        preco = input("Digite o preço do livro: ")
+        try:
+            float(preco)
+            break
+        except ValueError:
+            print("Preço inválido. Digite um valor numérico.")
 
     categorias = input("Digite as categorias do livro (separadas por vírgula): ").split(',')
     categorias = [categoria.strip() for categoria in categorias]
 
-    preco = input("Digite o preço do livro: ")
+    # Abre o arquivo no modo de leitura e escrita
+    with abrir_arquivo() as arquivo:
+        # Escreve os dados do livro no arquivo
+        arquivo.write(f"{titulo},{autor},{ano},{','.join(categorias)},{preco}\n")
 
-    livro = {"Título": titulo, "Autor": autor, "Ano": ano, "Categorias": categorias, "Preço": preco}
-    biblioteca.append(livro)
     print("Livro adicionado com sucesso!")
 
-# Função para listar os livros
+# (R - READ) Função para listar os livros
 def listar_livros():
     if not biblioteca:
         print("A biblioteca está vazia.")
@@ -27,7 +50,7 @@ def listar_livros():
             print(f"ID: {i}, Título: {livro['Título']}, Autor: {livro['Autor']}, Ano: {livro['Ano']}, Categorias: {', '.join(livro['Categorias'])}, Preço: {livro['Preço']}")
             print("-" * 50)  # Separador
 
-# Função para atualizar um livro
+# (U - UPDATE) Função para atualizar um livro
 def atualizar_livro():
     listar_livros()
     id_livro = int(input("Digite o ID do livro que deseja atualizar: "))
@@ -58,7 +81,7 @@ def atualizar_livro():
         livro["Preço"] = novo_preco
     print("Livro atualizado com sucesso!")
 
-# Função para excluir um livro
+# (D - DELETE) Função para excluir um livro
 def excluir_livro():
     listar_livros()
     id_livro = int(input("Digite o ID do livro que deseja excluir: "))
