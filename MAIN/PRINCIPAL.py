@@ -61,13 +61,13 @@ def porcentagem():
     while True:
         try:
             porcentagem = ""
-            a = False
+            flag = False
 
-            print("\n1. Lendo\t2.Completo\t3.Pretendo ler")
+            print(f"\n{'1. Lendo':<15} {'2.Completo':<15} {'3.Pretendo ler':<15}")
             status = int(input("Digite a opção escolhida para o status: "))
 
             if status == 1:
-                a = True
+                flag = True
             elif status == 2:
                 porcentagem = "100%"
             elif status == 3:
@@ -76,7 +76,7 @@ def porcentagem():
                 raise ValueError
 
 
-            while a:
+            while flag:
                 paginasTotal = int(input("\nDigite o número de páginas do livro: "))
 
                 if paginasTotal <= 0:
@@ -310,3 +310,4 @@ while True:
             break
     except ValueError:
             print("Opção inválida. Tente novamente.\n")
+
