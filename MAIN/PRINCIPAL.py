@@ -4,6 +4,11 @@ os.system("cls")
 file = open("MAIN/biblioteca.csv", "r")
 file.close()
 
+# FUNÇÃO FORMATAR TEXTO
+def texto_formatado(texto):
+    format = texto.split(",\t")
+    print(f"{format[0]:<40} {format[1]:<25} {format[2]:<20} {format[3]:<20} {format[4]:<10} {format[5]:<15} {format[6]:<15}")
+
 # FUNÇÃO ADICIONAR
 def adicionar_livro():
     while True:
@@ -93,12 +98,12 @@ def porcentagem():
 # FUNÇÃO LISTAR
 def listar_livros():
     file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
-    a = file.readlines()
+    linhas = file.readlines()
 
-    print("Título\t\t\t\t\t Autor\t\t Ano de Publicação\t Categoria\t Preço\t  Pontuação\t Status\n")
-    for i in a:
-        linha = i.split(",\t")
-        print(f"{linha[0]}\t {linha[1]}\t {linha[2]}\t\t\t {linha[3]}\t {linha[4]}\t {linha[5]}\t {linha[6]}\t")
+    print(f"{'Título':<40} {'Autor':<25} {'Ano de Publicação':<20} {'Categoria':<20} {'Preço':<10} {'Pontuação':<15} {'Status':<10}\n")
+    for linha in linhas:
+        texto_formatado(linha)
+
     file.close()
 
 # FUNCAO EXCLUIR
@@ -148,8 +153,8 @@ def atualizar_livro():
                     break
             else:
                 raise ValueError
-            
-            print("1.Título\t 2.Autor\t 3.Ano de Publicação\t 4.Categoria\t 5.Preço\t 6.Pontuação\t 7.Status\n")
+           
+            print(f"{'1.Título':<15} {'2.Autor':<15} {'3.Ano de Publicação':<25} {'4.Categoria':<15} {'5.Preço':<15} {'6.Pontuação':<15} {'7.Status':<15}\n")
             categoria = int(input("Digite a opção escolhida para atualizar: "))
 
             os.system("cls")
@@ -200,7 +205,7 @@ def atualizar_livro():
             break
 
         except ValueError:
-            print("Livro não encontrado!\n")
+            print("Opção inválida. Tente novamente.\n")
 
 # FUNCAO GASTO TOTAL
 def gasto_total():
@@ -228,27 +233,16 @@ def extrato_de_livros_por_categoria():
 
     for linha in linhas:
         acumulador = linha.split(",\t ")
-        generos.append(acumulador[3])
+        if not(acumulador[3] in generos):
+            generos.append(acumulador[3])
 
-    acumulador = []
+    for genero in generos:
+        print(genero.upper())
+        for linha in linhas:
+            elementos = linha.split(",\t ")
+            if elementos[3] == genero:
+                texto_formatado(linha)
 
-    while generos:
-        primeiro = generos[0]
-        acumulador.append(linhas[0])
-        linhas.pop(0)
-        generos.pop(0)
-
-        cont = 0
-        while cont < len(generos):
-            if primeiro == generos[cont]:
-                acumulador.append(linhas[cont])
-                linhas.pop(cont)
-                generos.pop(cont)
-            else:
-                cont += 1
-
-    for i in range(len(acumulador)):
-        print(acumulador[i])
     file.close()
 
 # FUNCAO FILTRAR POR CATEGORIA
@@ -257,22 +251,19 @@ def listar_livros_filtrados():
         try:   
             file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
             linhas = file.readlines()
-            a = []
 
             genero = input("Digite a categoria de livros que deseja encontrar: ")
 
             os.system("cls")
-
+            
+            generos = []
             for linha in linhas:
                 acumulador = linha.split(",\t ")
-                a.append(acumulador[3])
-
-            if genero in a:
-                for i in range(len(a)):
-                    if genero == a[i]:
-                        print(linhas[i])
-                
-            else:
+                generos.append(acumulador[3])
+                if acumulador[3] == genero:
+                    texto_formatado(linha)
+            
+            if not (genero in generos):
                 raise ValueError
             
             file.close()
@@ -284,7 +275,7 @@ def listar_livros_filtrados():
 # MENU PRINCIPAL
 while True:
     try:
-        print("1.Adicionar\t2.Visualizar\t3.Atualizar\t4.Excluir\t5.Gasto Total\t6.Sair")
+        print(f"{'1.Adicionar':<15} {'2.Visualizar':<15} {'3.Atualizar':<15} {'4.Excluir':<15} {'5.Gasto Total':<20} {'6.Sair':<15}")
         escolha = int(input("Digite a opção escolhida: "))
         
         os.system("cls")
@@ -293,7 +284,7 @@ while True:
             adicionar_livro()
             continue
         elif escolha == 2:
-            print("1.Extrato Total\t 2.Extrato Por Categoria\t 3.Filtrado Por Categoria")
+            print(f"{'1.Extrato Total':<20} {'2.Extrato Por Categoria':<30} {'3.Filtrado Por Categoria':<20}")
             escolha1 = int(input("Digite a opção escolhida: "))
             os.system("cls")
 
@@ -319,4 +310,3 @@ while True:
             break
     except ValueError:
             print("Opção inválida. Tente novamente.\n")
-
