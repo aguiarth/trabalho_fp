@@ -252,7 +252,7 @@ def listar_livros_filtrados():
             file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
             linhas = file.readlines()
 
-            genero = input("Digite a categoria de livros que deseja encontrar: ")
+            genero = input("Digite a categoria de livros que deseja encontrar: ").title()
 
             os.system("cls")
             
