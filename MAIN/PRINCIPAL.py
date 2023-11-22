@@ -1,7 +1,7 @@
 import os
 os.system("cls")
 
-file = open("MAIN/biblioteca.csv", "r")
+file = open("biblioteca.csv", "r")
 file.close()
 
 # FUNÇÃO FORMATAR TEXTO
@@ -13,7 +13,7 @@ def texto_formatado(texto):
 def adicionar_livro():
     while True:
         try:   
-            file = open("MAIN/biblioteca.csv", "a", encoding="utf-8")
+            file = open("biblioteca.csv", "a", encoding="utf-8")
 
             titulo = input("Digite o título do livro: ")
             autor = input("Digite o autor do livro: ")
@@ -97,7 +97,7 @@ def porcentagem():
 
 # FUNÇÃO LISTAR
 def listar_livros():
-    file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
+    file = open("biblioteca.csv", "r", encoding="utf-8")
     linhas = file.readlines()
 
     print(f"{'Título':<40} {'Autor':<25} {'Ano de Publicação':<20} {'Categoria':<20} {'Preço':<10} {'Pontuação':<15} {'Status':<10}\n")
@@ -112,7 +112,7 @@ def excluir_livro():
         try:   
             titulo = input("Digite o título do livro: ") 
 
-            file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
+            file = open("biblioteca.csv", "r", encoding="utf-8")
             linhas = file.readlines()
 
             for i, linha in enumerate(linhas):
@@ -124,7 +124,7 @@ def excluir_livro():
             
             file.close()
 
-            file = open("MAIN/biblioteca.csv", "w", encoding="utf-8")
+            file = open("biblioteca.csv", "w", encoding="utf-8")
             file.writelines(linhas)
             file.close()
 
@@ -143,7 +143,7 @@ def atualizar_livro():
             titulo = input("Digite o título do livro a ser atualizado: ") 
             os.system("cls")
 
-            file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
+            file = open("biblioteca.csv", "r", encoding="utf-8")
             linhas = file.readlines()
 
             for i, linha in enumerate(linhas):
@@ -195,7 +195,7 @@ def atualizar_livro():
             
             file.close()
 
-            file = open("MAIN/biblioteca.csv", "w", encoding="utf-8")
+            file = open("biblioteca.csv", "w", encoding="utf-8")
             file.writelines(linhas)
             file.close()
 
@@ -209,7 +209,7 @@ def atualizar_livro():
 
 # FUNCAO GASTO TOTAL
 def gasto_total():
-    file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
+    file = open("biblioteca.csv", "r", encoding="utf-8")
     armazenar = []
     linhas = file.readlines()
 
@@ -227,7 +227,7 @@ def gasto_total():
 
 # FUNCAO EXTRATO DA BIBLIOTECA POR CATEGORIA
 def extrato_de_livros_por_categoria():
-    file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
+    file = open("biblioteca.csv", "r", encoding="utf-8")
     linhas = file.readlines()
     generos = []
 
@@ -249,7 +249,7 @@ def extrato_de_livros_por_categoria():
 def listar_livros_filtrados():
     while True:
         try:   
-            file = open("MAIN/biblioteca.csv", "r", encoding="utf-8")
+            file = open("biblioteca.csv", "r", encoding="utf-8")
             linhas = file.readlines()
 
             genero = input("Digite a categoria de livros que deseja encontrar: ").title()
