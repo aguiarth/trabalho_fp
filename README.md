@@ -1,30 +1,17 @@
-# Gerenciamento de Biblioteca Pessoal
+# Informe
+Para uma explicação sobre o código final vá para **manual.md**
 
-O presente projeto é um sistema CRUD de livros para gerenciar uma biblioteca pessoal.
-A partir dele, a estudante Nathália pode cadastrar e consultar as informações disponíveis sobre os seus livros. 
-As informações abaixo descrevem as funcionalidades do sistema, as informações que constam em cada livro cadastrado e instruções de uso.
+# Arquivos Variados
+Exceto as pastas(branches) Extras e MAIN, os arquivos _.py_ são teste/tentativas de funções que foram testadas antes de serem concretizadas no arquivo PRINCIPAL.py
 
+## Extrato da biblioteca por categoria.py
+Uma tentativa primordial de ler o arquivo e enviar ao terminal apenas os livros com a mesma categoria
 
-## Funcionalidades
+## GastoTotal1.py
+Uma tentativa primordial de contar os preços dos livros que foram comprados e juntar para ver o valor total dos gastos
 
-- **CRUD de Livros**: o sistema permite adicionar, visualizar, atualizar e excluir livros da biblioteca através de um menu interativo;
-- **Leitura de Livros Filtrada por Categoria**: o sistema permite a visualização dos livros de acordo com suas categorias, facilitando a busca por gênero ou
-interesse específico;
-- **Armazenamento de informações em banco de dados**: o sistema armazena todas as informações sobre os livros em um banco de dados, que persiste mesmo após a execução do programa;
-- **Extrato da Biblioteca por Categoria**: o sistema apresenta um extrato da biblioteca agrupando os livros por categoria, ajudando o usuário a entender quais gêneros de livros há na coleção;
-- **Acompanhamento de Gastos Totais**: o sistema calcula e exibe o total de dinheiro gasto por Nathália em sua coleção de livros, permitindo que ela tenha uma visão clara de seus investimentos nessa paixão.
+## Leitura de livros filtrada por categoria.py
+Diferentemente do primeiro arquivo, Neste houve uma leitura de qual categoria era desejada
 
-
-## Informações dos livros cadastrados
-
-- os livros cadastrados possuem as seguintes informações:
-  - título
-  - autor
-  - categoria (como romance, ficção, literatura, etc)
-  - preço
-  - ano
-
-
-## Instruções de uso 
-
-- vide manual do usuário.
+## crud-e-menu-inicial.py e teste_1.py
+Um esqueleto básico do que seria o menu inicial
